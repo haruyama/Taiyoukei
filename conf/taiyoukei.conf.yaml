@@ -1,0 +1,10 @@
+---
+common-java-opts: "-Djava.awt.headless=true -server -XX:MaxPermSize=128m
+  -XX:-UseGCOverheadLimit -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75
+  -XX:+CMSIncrementalMode -XX:+CMSIncrementalPacing -XX:CMSIncrementalDutyCycleMin=0
+  -XX:+UseParNewGC -XX:+UseStringCache -XX:+UseTLAB -XX:+DisableExplicitGC -XX:+UseCompressedOops
+  -XX:+OptimizeStringConcat  -DSTOP.PORT=8079 -DSTOP.KEY=Taiyoukei"
+nodes:
+- host: localhost
+  port: 30000
+  java-opts: "-Xmx5g -Xms5g -Denable.master=true"
