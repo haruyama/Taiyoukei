@@ -2,7 +2,7 @@
 common-java-opts: "-Djava.awt.headless=true -server -XX:MaxPermSize=128m
   -XX:-UseGCOverheadLimit -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75
   -XX:+CMSIncrementalMode -XX:+CMSIncrementalPacing -XX:CMSIncrementalDutyCycleMin=0
-  -XX:+UseParNewGC -XX:+UseStringCache -XX:+UseTLAB -XX:+DisableExplicitGC -XX:+UseCompressedOops
+  -XX:+UseStringCache -XX:+UseTLAB -XX:+DisableExplicitGC -XX:+UseCompressedOops
   -XX:+OptimizeStringConcat  -DSTOP.PORT=8079 -DSTOP.KEY=Taiyoukei"
 nodes:
 - host: localhost
