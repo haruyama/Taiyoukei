@@ -56,11 +56,18 @@ fi
 
 # run COMMAND
 if [ "$TAIYOUKEI_COMMAND"  = "start" ] ; then
+        jetty_stop_port=`expr "$java_opts" : '^.*-DSTOP\.PORT=\([0-9]*\)'`
+        if [ -n $jetty_stop_port ] ; then
+                echo a | nc localhost $jetty_stop_port 2> /dev/null
+                if [ $? -ne 1 ] ; then
+                        error "Error: stop port already in use?: $jetty_stop_port"
+                fi
+        fi
         curl -s http://$TAIYOUKEI_HOST:$TAIYOUKEI_PORT/ > /dev/null
         if [ $? -ne 7 ] ; then
                 error "Error: base port already in use?: $TAIYOUKEI_PORT"
         fi
-        nohup java $java_opts -Djetty.port=$TAIYOUKEI_PORT -jar $TAIYOUKEI_HOME/lib/start.jar $TAIYOUKEI_HOME/conf/jetty.xml < /dev/null >& /dev/null &
+        java $java_opts -Djetty.port=$TAIYOUKEI_PORT -jar $TAIYOUKEI_HOME/lib/start.jar $TAIYOUKEI_HOME/conf/jetty.xml < /dev/null >& /dev/null &
         if [ $? -ne 0 ] ; then
                 error "Error: Solr cannot start"
         fi
