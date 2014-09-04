@@ -2,3 +2,4 @@ tmp
 logs
 solr/collection1/data
 work/*
+solr/collection1/conf/_rest_managed.json
